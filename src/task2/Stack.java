@@ -1,4 +1,4 @@
-package stack;
+package task2;
 
 /** 
  * Class implements stack
