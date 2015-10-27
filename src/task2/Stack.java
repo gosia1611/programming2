@@ -8,12 +8,12 @@ package task2;
 public class Stack {
 	int[] values;
 	int size;
-	int onTop;
+	int top;
 
 	public Stack(int size) {
 		values = new int[size];
 		this.size = size;
-		this.onTop = 0;
+		this.top = -1;
 	}
 
 	/**
@@ -21,7 +21,7 @@ public class Stack {
 	 * @return true is is empty, otherwise false
 	 */
 	private boolean isEmpty() {
-		if(this.onTop == 0) {
+		if(this.top == 0) {
 			System.out.println("Stack is empty");
 			return true;
 		}
@@ -33,11 +33,11 @@ public class Stack {
 	 * @param element to push on stack
 	 */
 	public void push(int element) {
-		if(onTop == size) {
+		if(top == size-1) {
 			System.out.println("Stack is full");
 		} else {
-			values[onTop] = element;
-			this.onTop++;
+			this.top++;
+			values[top] = element;
 			System.out.println("Element " + element + " is on stack");
 		}
 	}
@@ -48,9 +48,10 @@ public class Stack {
 	 */
 	public int pop() {
 		isEmpty();
-		this.onTop--;
-		System.out.println("Element " + values[onTop] + " is removed from stack");
-		return values[onTop];
+		int valuesOnTop = values[top];
+		System.out.println("Element " + values[top] + " is removed from stack");
+		this.top--;
+		return valuesOnTop;
 	}
 
 	/**
@@ -59,7 +60,7 @@ public class Stack {
 	public void display() {
 		if(!isEmpty()) {
 			System.out.println("Values on stack:");
-			for(int i=onTop-1; i>=0; i--) {
+			for(int i=top; i>=0; i--) {
 				System.out.println(i + ": " + values[i]);
 			}
 		}
